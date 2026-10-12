@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Wanderly: Your World, Your Adventure. Explore Northern & Central Europe with tailor-made travel packages, self-drive tours, guided small groups, and scenic rail journeys." />
+  <title>Wanderly — Your World, Your Adventure</title>
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-notice-bar">
+    <div class="container">
+      Flexibility when you need it: <strong>Book With Confidence Guarantee</strong> — 100% Peace of Mind on All 2026/2027 Tours.
+    </div>
+  </div>
+
+  <!-- Top Utility Bar -->
+  <div class="top-nav-bar">
+    <div class="container">
+      <div class="top-nav-left">
+        <a href="tel:+91-850-506-3848" class="top-link">
+          <i class="fas fa-phone-alt" style="color:var(--accent-teal)"></i>
+          <span>+91-850-506-3848</span> (Toll-Free In INDIA)
+        </a>
+        <span class="top-link">
+          <i class="far fa-clock" style="color:var(--accent-teal)"></i>
+          24/7 Dedicated Support
+        </span>
+      </div>
+      <div class="top-nav-right">
+        <!-- Currency Dropdown -->
+        <div class="currency-selector-container">
+          <button class="currency-trigger" id="currencyTrigger" aria-label="Change currency">
+            <i class="fas fa-rupee-sign" style="color:var(--accent-teal)"></i>
+            <span id="currencyText">INR (₹)</span>
+            <i class="fas fa-chevron-down" style="font-size:0.7rem;margin-left:2px"></i>
+          </button>
+          <div class="currency-dropdown" id="currencyDropdown">
+            <button class="currency-option" data-currency="INR">INR (₹) - Indian Rupee</button>
+            <button class="currency-option" data-currency="EUR">EUR (€) - Euro</button>
+            <button class="currency-option" data-currency="GBP">GBP (£) - British Pound</button>
+          </div>
+        </div>
+
+        <button class="top-link" id="wishlistBtn" aria-label="View Wishlist">
+          <i class="fas fa-heart" style="color:#f43f5e"></i>
+          Wishlist (<span id="wishlistCountBadge">0</span>)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="brand-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <div class="brand-logo-icon">
+          <i class="fas fa-compass"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Wanderly</span>
+          <span class="brand-subtitle">Your World, Your Adventure</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="#destinationsSection" class="nav-item">Destinations</a>
+        <a href="#stylesSection" class="nav-item">Ways to Travel</a>
+        <a href="#toursSection" class="nav-item">Explore Tours</a>
+        <a href="#reviewsSection" class="nav-item">Reviews</a>
+        <a href="#faqSection" class="nav-item">Travel FAQ</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Cart Action Button -->
+        <button class="icon-action-btn" id="cartBtn" title="View Booking Cart" aria-label="Booking Cart">
+          <i class="fas fa-suitcase-rolling"></i>
+          <span class="action-badge" id="cartCountBadge">0</span>
+        </button>
+        <button class="icon-action-btn" id="bookingHistoryBtn" title="Booking History" aria-label="Booking History">
+          <i class="fas fa-clock-rotate-left"></i>
+          <span class="action-badge" id="historyCountBadge">0</span>
+        </button>
+        <button class="icon-action-btn" id="loginBtn" title="Sign in" aria-label="Sign in">
+          <i class="fas fa-user"></i>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section with Search Widget -->
+  <section class="hero-section" id="heroSection">
+    <div class="hero-content">
+      <div class="hero-sale-ticket">
+        <i class="fas fa-tag" style="color:var(--accent-teal)"></i>
+        <span>EARLY BIRD SALE: SAVE UP TO ₹83,000 ON 2027 TRIPS</span>
+      </div>
+      <h1 class="hero-headline">
+        Local Experts. <span class="highlight">Trips to Remember.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Explore India, Iceland, Norway, Scotland, Ireland, and the Alps with personal care from dedicated travel consultants who live there.
+      </p>
+
+      <!-- Interactive Quick Search Widget -->
+      <div class="hero-search-widget">
+        <div class="search-field">
+          <span class="search-label"><i class="fas fa-map-marker-alt" style="color:var(--accent-teal)"></i> Destination</span>
+          <select class="search-select" id="heroDestinationSelect">
+            <option value="all">All Destinations</option>
+          </select>
+        </div>
+
+        <div class="search-field">
+          <span class="search-label"><i class="fas fa-car-side" style="color:var(--accent-teal)"></i> Travel Style</span>
+          <select class="search-select" id="heroTypeSelect">
+            <option value="all">Any Travel Style</option>
+            <option value="self-drive">Self-Drive Packages</option>
+            <option value="small-group">Guided Small Groups</option>
+            <option value="train-cruise">Scenic Trains & Cruises</option>
+            <option value="private">Privately Guided Luxury</option>
+          </select>
+        </div>
+
+        <div class="search-field">
+          <span class="search-label"><i class="far fa-calendar-alt" style="color:var(--accent-teal)"></i> Season</span>
+          <select class="search-select" id="heroSeasonSelect">
+            <option value="all">Any Time of Year</option>
+            <option value="winter">Winter & Northern Lights</option>
+            <option value="summer">Summer & Midnight Sun</option>
+          </select>
+        </div>
+
+        <div class="search-field">
+          <span class="search-label"><i class="fas fa-shield-alt" style="color:var(--accent-teal)"></i> Booking Terms</span>
+          <div style="font-size:0.85rem;font-weight:700;color:var(--primary-navy)">Flexibility Included</div>
+        </div>
+
+        <button class="btn btn-primary search-widget-btn" id="heroFindBtn">
+          <i class="fas fa-search"></i> Find My Trip
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Highlights Strip -->
+  <section class="trust-strip">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-icon-box">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div>
+            <div class="trust-title">Cancellation Protection</div>
+            <div class="trust-desc">Book with confidence; flexible date changes and 100% refund safety.</div>
+          </div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-icon-box">
+            <i class="fas fa-headset"></i>
+          </div>
+          <div>
+            <div class="trust-title">24/7 On-Trip Support</div>
+            <div class="trust-desc">Direct hotline to your dedicated local travel consultant at all times.</div>
+          </div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-icon-box">
+            <i class="fas fa-map-marked-alt"></i>
+          </div>
+          <div>
+            <div class="trust-title">Local Experts, Insider Insights</div>
+            <div class="trust-desc">Routes mapped and tested by people who actually live in our destinations.</div>
+          </div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-icon-box">
+            <i class="fas fa-star" style="color:var(--accent-amber)"></i>
+          </div>
+          <div>
+            <div class="trust-title">4.9 / 5 Rating</div>
+            <div class="trust-desc">Over 8,500+ verified 5-star traveler reviews since 2002.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destinations Section ("Where to?") -->
+  <section class="section section-sandstone" id="destinationsSection">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">Explore India and Northern Europe</span>
+        <h2 class="section-title">Where to?</h2>
+        <p class="section-subtitle">
+          From Rajasthan's dunes to Himalayan Valleys, Icelandic glacier lagoons to Norway’s dramatic fjords and the Scottish Highlands. Click any destination to view tailored packages.
+        </p>
+      </div>
+
+      <div class="destinations-grid" id="destinationsGrid">
+        <!-- Rendered dynamically by js/app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Ways to Travel Section ("Your trip. Your way.") -->
+  <section class="section section-white" id="stylesSection">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-kicker">Travel Styles</span>
+        <h2 class="section-title">Your trip. Your way.</h2>
+        <p class="section-subtitle">
+          Hop behind the wheel of a 4x4, ride panoramic alpine rails, or join an intimate small group led by an expert local storyteller.
+        </p>
+      </div>
+
+      <div class="tour-styles-grid" id="tourStylesGrid">
+        <!-- Rendered dynamically by js/app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Tour Packages Explorer Hub -->
+  <section class="section section-sandstone" id="toursSection">
+    <div class="container tours-hub">
+      <div class="section-header text-center">
+        <span class="section-kicker">Curated Vacation Packages</span>
+        <h2 class="section-title">Find Your Perfect Adventure</h2>
+        <p class="section-subtitle">
+          Filter by destination, travel style, season, duration, and budget. Click any tour for the full day-by-day itinerary or customize and book directly.
+        </p>
+      </div>
+
+      <!-- Filters Wrapper -->
+      <div class="filters-wrapper">
+        <!-- Keyword Search & Sorting -->
+        <div class="filter-row-top">
+          <div class="search-input-box">
+            <i class="fas fa-search search-icon-fixed"></i>
+            <input type="text" class="filter-search-input" id="filterSearchInput" placeholder="Search by tour name, highlights (e.g. Ring Road, Ice Cave, Flåm Railway, Skye)..." />
+          </div>
+
+          <div class="sort-dropdown-box">
+            <label for="sortSelect"><i class="fas fa-sort-amount-down"></i> Sort By:</label>
+            <select class="sort-select" id="sortSelect">
+              <option value="recommended">Recommended & Popular</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="duration-asc">Duration: Short to Long</option>
+              <option value="duration-desc">Duration: Long to Short</option>
+              <option value="rating">Highest Traveler Rating</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Destination Filter Pills -->
+        <div class="filter-pills-row" id="filterPills">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Secondary Filters Row -->
+        <div class="filter-controls-row">
+          <div class="filter-group">
+            <span class="filter-group-label">Travel Style</span>
+            <select class="filter-select" id="filterTypeSelect">
+              <option value="all">All Styles</option>
+              <option value="self-drive">Self-Drive Packages</option>
+              <option value="small-group">Guided Small Groups</option>
+              <option value="train-cruise">Scenic Trains & Cruises</option>
+              <option value="private">Privately Guided</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-group-label">Season / Departure</span>
+            <select class="filter-select" id="filterSeasonSelect">
+              <option value="all">All Seasons</option>
+              <option value="winter">Winter & Northern Lights</option>
+              <option value="summer">Summer & Midnight Sun</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-group-label">Duration</span>
+            <select class="filter-select" id="filterDurationSelect">
+              <option value="all">Any Length</option>
+              <option value="short">1 - 6 Days (Getaways)</option>
+              <option value="medium">7 - 9 Days (1 Week)</option>
+              <option value="long">10+ Days (Grand Tours)</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-group-label">Instant Actions</span>
+            <button class="clear-filters-btn" id="clearFiltersBtn">
+              <i class="fas fa-undo"></i> Reset Filters
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Summary Bar -->
+      <div class="results-summary-bar">
+        <div class="results-count" id="resultsCount">Loading curated tours...</div>
+      </div>
+
+      <!-- Tours Cards Grid -->
+      <div class="tours-grid" id="toursGrid">
+        <!-- Rendered dynamically by js/app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Traveler Reviews & Testimonials -->
+  <section class="section section-white" id="reviewsSection">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-kicker">Verified Feedback</span>
+        <h2 class="section-title">What Our Travelers Say</h2>
+        <p class="section-subtitle">
+          Real stories from adventurers who explored India andEurope with Wanderly.
+        </p>
+      </div>
+
+      <div class="testimonials-grid" id="testimonialsGrid">
+        <!-- Rendered dynamically by js/app.js -->
+      </div>
+      <div style="text-align:center;margin-top:24px">
+        <button class="btn btn-outline" id="allReviewsBtn" aria-expanded="false">All Reviews</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Travel FAQ Accordion -->
+  <section class="section section-sandstone" id="faqSection">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-kicker">Got Questions?</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">
+          Everything you need to know about booking, self-drive rentals, small group sizes, and cancellation protection.
+        </p>
+      </div>
+
+      <div class="faq-accordion" id="faqsAccordion">
+        <!-- Rendered dynamically by js/app.js -->
+      </div>
+      <div class="faq-question-panel">
+        <div>
+          <h3>Still have a question?</h3>
+          <p>Send us your question and we’ll help you plan your trip.</p>
+        </div>
+        <form id="askQuestionForm">
+          <div class="faq-question-fields">
+            <label>
+              Your name
+              <input class="form-control" name="name" autocomplete="name" required maxlength="100" />
+            </label>
+            <label>
+              Email address
+              <input class="form-control" name="email" type="email" autocomplete="email" required maxlength="254" />
+            </label>
+            <label class="faq-question-full">
+              Your question
+              <textarea class="form-control" name="question" rows="4" required maxlength="1000"></textarea>
+            </label>
+          </div>
+          <button class="btn btn-primary" type="submit">Submit Question</button>
+          <p class="faq-question-note" id="askQuestionStatus" aria-live="polite">Messages are not sent to support yet.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Banner -->
+  <section class="section section-navy" style="padding:60px 0">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px">
+      <div>
+        <span class="badge badge-teal" style="margin-bottom:8px">Wanderly Inspiration</span>
+        <h3 style="font-family:var(--font-serif);font-size:2rem;font-weight:700">Receive Secret Deals & Local Travel Tips</h3>
+        <p style="color:#cbd5e1;font-size:0.95rem">Get handpicked itineraries, seasonal aurora alerts, and early-bird discounts in your inbox.</p>
+      </div>
+      <div style="display:flex;gap:10px;min-width:320px;max-width:440px;width:100%">
+        <input type="email" placeholder="Enter your email address" style="flex-grow:1;padding:12px 16px;border-radius:var(--radius-full);border:none;outline:none" />
+        <button class="btn btn-primary" onclick="alert('Thank you for subscribing to Wanderly!')">
+          Subscribe
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom:12px">
+            <div class="brand-logo-icon" style="background:#fff;color:var(--primary-navy)">
+              <i class="fas fa-compass"></i>
+            </div>
+            <div class="brand-text">
+              <span class="brand-title" style="color:#fff">Wanderly</span>
+              <span class="brand-subtitle" style="color:var(--accent-teal)">Your World, Your Adventure</span>
+            </div>
+          </div>
+          <p class="footer-brand-desc">
+            Local travel experts crafting unforgettable tailor-made holidays across Iceland, Scandinavia, Scotland, Ireland, and the Alps since 2002.
+          </p>
+          <div style="display:flex;gap:12px;margin-top:16px;font-size:1.2rem;color:var(--accent-teal)">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Destinations</h4>
+          <ul class="footer-links-list">
+            <li><a href="#toursSection">Iceland Tours</a></li>
+            <li><a href="#toursSection">Norway & Fjords</a></li>
+            <li><a href="#toursSection">Scotland & Skye</a></li>
+            <li><a href="#toursSection">Ireland Coast</a></li>
+            <li><a href="#toursSection">Swiss Alps Rail</a></li>
+            <li><a href="#toursSection">Lapland Aurora</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Ways to Travel</h4>
+          <ul class="footer-links-list">
+            <li><a href="#toursSection">Self-Drive Tours</a></li>
+            <li><a href="#toursSection">Guided Small Groups</a></li>
+            <li><a href="#toursSection">Scenic Train Tours</a></li>
+            <li><a href="#toursSection">Private Guided Stays</a></li>
+            <li><a href="#toursSection">Northern Lights Hunts</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Trust & Safety</h4>
+          <ul class="footer-links-list">
+            <li><a href="#">Book With Confidence</a></li>
+            <li><a href="#">24/7 Helpline Support</a></li>
+            <li><a href="#">Sustainability Policy</a></li>
+            <li><a href="#">Verified Reviews</a></li>
+            <li><a href="#">Booking Terms & Policy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Local Offices</h4>
+          <p style="font-size:0.85rem;line-height:1.6;margin-bottom:12px">
+            <strong>Jaipur Office (Sample):</strong> 18 Amber Courtyard, MI Road, Jaipur, Rajasthan 302001
+          </p>
+          <p style="font-size:0.85rem">
+            <strong>Toll Free:</strong> 1-800-490-1019
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          &copy; 2026 Wanderly Travel Agency. All rights reserved.
+        </div>
+        <div style="display:flex;gap:18px">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       Interactive Itinerary Details Modal
+       ========================================================================= -->
+  <div class="modal-backdrop" id="itineraryModalBackdrop">
+    <div class="itinerary-modal">
+      <button class="modal-close-btn" id="itineraryModalClose" aria-label="Close modal">
+        <i class="fas fa-times"></i>
+      </button>
+      <div id="itineraryContent">
+        <!-- Rendered dynamically by js/app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       Slide-Over Booking Cart & Drawer
+       ========================================================================= -->
+  <div class="drawer-backdrop" id="cartDrawerBackdrop">
+    <div class="cart-drawer">
+      <div class="drawer-header">
+        <h3 class="drawer-title">
+          <i class="fas fa-suitcase-rolling" style="color:var(--accent-teal)"></i>
+          <span>Your Booking Cart</span>
+        </h3>
+        <button class="drawer-close" id="cartDrawerClose" aria-label="Close cart">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="drawer-body">
+        <div class="cart-items-container" id="cartItemsList">
+          <!-- Rendered dynamically by js/app.js -->
+        </div>
+      </div>
+
+      <div class="drawer-footer">
+        <div class="promo-code-box">
+          <input type="text" class="promo-input" id="promoInput" placeholder="Promo code (e.g. EARLYBIRD)" />
+          <button class="btn btn-outline btn-sm promo-btn" id="applyPromoBtn">Apply</button>
+        </div>
+
+        <div class="cart-breakdown-row">
+          <span>Subtotal:</span>
+          <span id="cartSubtotal">€0</span>
+        </div>
+        <div class="cart-breakdown-row" id="cartDiscountRow" style="display:none;color:#059669">
+          <span>Early Bird Discount:</span>
+          <span id="cartDiscountVal">-€0</span>
+        </div>
+        <div class="cart-breakdown-row">
+          <span>Taxes & Environmental Fees:</span>
+          <span>Included (0% VAT)</span>
+        </div>
+        <div class="cart-breakdown-row total-row">
+          <span>Estimated Total:</span>
+          <span id="cartTotal">€0</span>
+        </div>
+
+        <button class="btn btn-primary btn-block" id="checkoutBtn" style="padding:14px;font-size:1.05rem">
+          <i class="fas fa-lock"></i> Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       Multi-Step Checkout Modal
+       ========================================================================= -->
+  <div class="modal-backdrop" id="checkoutModalBackdrop">
+    <div class="checkout-modal">
+      <button class="modal-close-btn" id="checkoutModalClose" aria-label="Close checkout">
+        <i class="fas fa-times"></i>
+      </button>
+      <div id="checkoutModalContent">
+        <!-- Rendered dynamically by js/app.js -->
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="bookingHistoryBackdrop" aria-hidden="true">
+    <section class="booking-history-modal" role="dialog" aria-modal="true" aria-labelledby="bookingHistoryTitle">
+      <button class="booking-history-close" id="bookingHistoryClose" aria-label="Close booking history">
+        <i class="fas fa-times"></i>
+      </button>
+      <h2 id="bookingHistoryTitle">Booking History</h2>
+      <div id="bookingHistoryList"></div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="loginBackdrop" aria-hidden="true">
+    <section class="booking-history-modal login-modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+      <button class="booking-history-close" id="loginCloseBtn" aria-label="Close sign-in dialog">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="login-icon"><i class="fas fa-user"></i></div>
+      <h2 id="loginTitle">Sign in to Wanderly</h2>
+      <p>Account sign-in isn’t available yet.</p>
+      <button class="btn btn-primary" id="loginDoneBtn">Close</button>
+    </section>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notification" id="toastNotification">
+    <i class="fas fa-info-circle" style="color:var(--accent-teal);font-size:1.2rem"></i>
+    <span id="toastText">Notification message</span>
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
